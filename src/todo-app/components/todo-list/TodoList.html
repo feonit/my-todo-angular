@@ -1,0 +1,18 @@
+<ol class="list-group noselect ">
+  <li ng-repeat="(index, todo) in $ctrl.collection.models" class="list-group-item text-capitalize">
+    <div class="checkbox">
+      <label>
+        <input
+          ng-click="$ctrl.onCheckboxClick(todo.id)"
+          ng-checked="$ctrl.checkboxIsChecked(todo.id)"
+          type="checkbox"
+        />
+        <del ng-if=todo.isCompleted>{{ todo.description }}</del>
+        <strong ng-if=!todo.isCompleted>{{ todo.description }}</strong>
+      </label>
+    </div>
+  </li>
+</ol>
+
+
+

@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <title>FountainJS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
+
+    <!-- build:css({.tmp,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp,src}) styles/app.css -->
+    <link rel="stylesheet" href="index.css"/>
+    <!-- endbuild -->
+  </head>
+
+
+
+  <!-- build:js({.tmp,src}) scripts/vendor.js -->
+  <!-- bower:js -->
+  <!-- run `gulp inject` to automatically populate bower script dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <script>
+
+    (function(angular, require){
+
+      define('angular', [], function(){
+          return {
+              default: window.angular
+          };
+      })
+
+      define('angular-ui-router', [], function(){
+          return {
+              default: window["angular-ui-router"]
+          };
+      })
+
+
+      require(['./todo-app/app.module', './todo-app/workspace.module'], function(app, workspace){
+        app.registerComponents();
+        angular.element(function() {
+
+          var injector = angular.bootstrap(document.body, ['todoAppModule']);
+          workspace.workspace.injector = injector;
+          workspace.workspace.$resource = injector.get('$resource');
+          workspace.workspace.todoService = injector.get('TodoService');
+          workspace.workspace.todoItemService = injector.get('TodoItemService');
+          workspace.workspace.$q = injector.get('$q');
+
+        });
+      })
+
+    })(angular, require)
+
+
+//(function(angular){
+//
+//  angular.module('indexModule', [
+//    'ui.router'
+//  ])
+//
+//    .factory('PeopleService', function(){
+//      var PeopleService = {
+//        getAllPeople: function(){
+//          return Promise.resolve([
+//            {"id": 1, "name": "Leo"},
+//            {"id": 2, "name": "Catrin"},
+//          ])
+//        },
+//        getPerson: function(personId){
+//          return Promise.resolve({
+//            "id": personId,
+//            "name": "Leo"+' '+ personId,
+//            "surname": "Boooo"
+//          })
+//        }
+//      }
+//      return PeopleService;
+//    })
+//
+//    .config(function($stateProvider) {
+//      var helloState = {
+//        name: 'hello',
+//        url: '/hello',
+//        component: 'hello'
+//      }
+//
+//      var aboutState = {
+//        name: 'about',
+//        url: '/about',
+//        template: '<h3>Its the UI-Router hello world app!</h3>'
+//      }
+//
+//      var peopleState = {
+//        name: 'people',
+//        url: '/people',
+//        component: 'people',
+//        resolve: {
+//          people: function(PeopleService, $transition$) {
+//            return PeopleService.getAllPeople();
+//          }
+//        }
+//      };
+//
+//      var personState = {
+//        name: 'people.person',
+//        url: '/{personId}',
+//        component: 'person',
+//        resolve: {
+//          person: function(people, $stateParams) {
+//            var find = people.find(function(person){
+//              return person.id === parseInt($stateParams.personId);
+//            })
+//            return find;
+////                  return PeopleService.getPerson($transition$.params().personId);
+//          }
+//        }
+//      };
+//
+//      $stateProvider.state(helloState);
+//      $stateProvider.state(aboutState);
+//      $stateProvider.state(peopleState);
+//      $stateProvider.state(personState);
+//    })
+//
+//    .component('hello', {
+//      template:  '<h3>{{$ctrl.greeting}} Solar System!</h3>' +
+//      '<button ng-click="$ctrl.toggleGreeting()">toggle greeting</button>',
+//
+//      controller: function() {
+//        this.greeting = 'hello';
+//
+//        this.toggleGreeting = function() {
+//          this.greeting = (this.greeting == 'hello') ? 'whats up' : 'hello'
+//        }
+//      }
+//    })
+//
+//    .component('people', {
+//      bindings: { people: '<' },
+//
+//      template: '' +
+//      '<div>' +
+//      '<div class="people">' +
+//      '<h3>Some people:</h3>' +
+//      '<ul>' +
+//      '  <li ng-repeat="person in $ctrl.people">' +
+//      '    <a ui-sref="people.person({ personId: person.id })">' +
+//      '      {{person.name}}' +
+//      '    </a>' +
+//      '  </li>' +
+//      '</ul>' +
+//      '</div>' +
+//
+//      '<!-- viewport for child view -->' +
+//      '<ui-view></ui-view>' +
+//      '</div>'
+//
+//    })
+//
+//    .component('person', {
+//      bindings: { "person": '<' },
+//
+//      template: '<h2>User: {{$ctrl.person.name}}</h2>'
+//    })
+//})(angular)
+
+  </script>
+
+  <body>
+    <todo-app></todo-app>
+
+    <!--<div ng-app="indexModule">-->
+
+    <!--<a ui-sref="hello" ui-sref-active="active">Hello</a>-->
+    <!--<a ui-sref="about" ui-sref-active="active">About</a>-->
+    <!--<a ui-sref="people" ui-sref-active="active">people</a>-->
+    <!--<a ui-sref="people.person({ personId: 1 })" ui-sref-active="active">person</a>-->
+
+    <!--<ui-view></ui-view>-->
+
+
+    <!--</div>-->
+  </body>
+
+
+</html>
+

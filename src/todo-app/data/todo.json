@@ -1,0 +1,8 @@
+[
+  {"isCompleted": true, "description": "learn Backbone"},
+  {"isCompleted": true, "description": "learn Marionette"},
+  {"isCompleted": true, "description": "learn Knockout"},
+  {"isCompleted": true, "description": "learn React"},
+  {"isCompleted": false, "description": "learn Angular"},
+  {"isCompleted": false, "description": "next"}
+]

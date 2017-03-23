@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "module": "AMD",
+    "typeRoots": ["node_modules/@types/"],
+    "allowJs": true,
+    "types": [
+      "angular-ui-router",
+      "angular",
+      "angular-mocks",
+      "jquery",
+      "jasmine",
+      "es6-shim"
+    ]
+  },
+  "compileOnSave": false,
+  "filesGlob": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "!bower_components/**",
+    "!node_modules/**"
+  ]
+}
