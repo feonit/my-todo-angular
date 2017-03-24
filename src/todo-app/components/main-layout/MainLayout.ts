@@ -34,6 +34,7 @@ class MainLayoutController extends ComponentController{
     this.optionsDeleteButton = null;
     this.optionsTextArea = null;
     this.optionsTodoList = null;
+    this.optionsPaginator = null;
 
     this.todoCollection = null;
     this.selectedList = [];
@@ -183,6 +184,14 @@ class MainLayoutController extends ComponentController{
 
   getSelectedCount(){
     return this.selectedList.length
+  }
+
+  getTotalCount(){
+    if (this.todoCollection){
+      return this.todoCollection.models.length
+    } else {
+      return 0;
+    }
   }
 
   badgeCanShowed(){
