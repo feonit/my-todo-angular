@@ -22,7 +22,7 @@ class MainLayoutController extends ComponentController{
   optionsTodoList: ITodoListOptions;
 
   todoCollection: TodoCollection;
-  selectedList: number[];
+  selectedIds: number[];
 
   static $inject = ['$scope']
 
@@ -37,7 +37,7 @@ class MainLayoutController extends ComponentController{
     this.optionsPaginator = null;
 
     this.todoCollection = null;
-    this.selectedList = [];
+    this.selectedIds = [];
 
     this.onLoadTasks = this.onLoadTasks.bind(this);
     this.onAddClick = this.onAddClick.bind(this);
@@ -106,7 +106,7 @@ class MainLayoutController extends ComponentController{
       },
       optionsTodoList: {
         collection: this.todoCollection.models,
-        selectedList: this.selectedList
+        selectedIds: this.selectedIds
       },
       optionsTextArea: {
         text: "",
@@ -145,7 +145,7 @@ class MainLayoutController extends ComponentController{
   }
 
   onDeleteClick(){
-    if ( this.selectedList.length ){
+    if ( this.selectedIds.length ){
 
       let self = this;
 
@@ -165,7 +165,7 @@ class MainLayoutController extends ComponentController{
         self.errorsView("шеф все пропало")
       }
 
-      let resources = this.selectedList.map(function(id){
+      let resources = this.selectedIds.map(function(id){
         return workspace.todoItemService.delete({todoId: id}, successHandler, errorHandler);
       })
 
@@ -183,7 +183,7 @@ class MainLayoutController extends ComponentController{
   }
 
   getSelectedCount(){
-    return this.selectedList.length
+    return this.selectedIds.length
   }
 
   getTotalCount(){
@@ -198,14 +198,14 @@ class MainLayoutController extends ComponentController{
     return this.getSelectedCount() > 0
   }
 
-  handleSelectedListChange(list){
-    this.selectedList = list;
+  handleSelectedListChange(ids){
+    this.selectedIds = ids;
 
      this.setState({
        optionsDeleteButton: {
          title: "Удалить",
-         disabled: !list.length,
-         class: list.length ? 'btn-success' : 'btn-default'
+         disabled: !ids.length,
+         class: ids.length ? 'btn-success' : 'btn-default'
        }
      })
 

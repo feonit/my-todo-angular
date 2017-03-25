@@ -1,6 +1,6 @@
 import { Component } from '../../models/Component';
 import { TodoCollection } from '../../models/TodoCollection'
-import { ListModel } from '../../models/ListModel'
+import { SelectedItems } from '../../models/SelectedItems'
 import IScope = angular.IScope;
 import { ComponentController } from '../../models/ComponentController';
 
@@ -19,7 +19,7 @@ export class TodoListComponentController extends ComponentController{
   constructor(TodoService, $scope, $attrs){
     super();
     this.collection = TodoCollection.createTodoCollection([]);
-    this.list = new ListModel([]);
+    this.list = new SelectedItems([]);
     this.$scope = $scope;
 
     // this._setTasks = this._setTasks.bind(this);
@@ -33,8 +33,7 @@ export class TodoListComponentController extends ComponentController{
     if ( values.options.currentValue && values.options.currentValue.collection ){
       let collectionData = values.options.currentValue.collection;
       this.collection = TodoCollection.createTodoCollection(collectionData);
-      this.list = new ListModel(values.options.currentValue.selectedList);
-
+      this.list = new SelectedItems(values.options.currentValue.selectedIds);
     }
   }
 
@@ -48,12 +47,12 @@ export class TodoListComponentController extends ComponentController{
   onCheckboxClick(id){
     this.list.switchPresence(id)
     if (this.onSelectedListChange){
-      this.onSelectedListChange({list: this.list.selectedById})
+      this.onSelectedListChange({ list: this.list.getValues() })
     }
   }
 
   checkboxIsChecked(id){
-    this.list.findTodoId(id)
+    return this.list.hasValue(id)
   }
 }
 
