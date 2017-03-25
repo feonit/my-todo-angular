@@ -5,10 +5,10 @@ import { workspace } from '../../workspace.module'
 import { TodoCollection } from '../../models/TodoCollection'
 import { ITodoListOptions } from "../todo-list/TodoList";
 
-import { addDelay } from '../../utils/helpers'
+import { delayFn } from '../../utils/helpers'
 
 
-interface IoptionsTextArea {
+interface ITextAreaOptions {
   text: string,
   placeholder: string,
   disabled: boolean
@@ -18,7 +18,7 @@ class MainLayoutController extends ComponentController{
   optionsLoadButton: ICustomButton;
   optionsAddButton: ICustomButton;
   optionsDeleteButton: ICustomButton;
-  optionsTextArea: IoptionsTextArea;
+  optionsTextArea: ITextAreaOptions;
   optionsTodoList: ITodoListOptions;
 
   todoCollection: TodoCollection;
@@ -39,7 +39,6 @@ class MainLayoutController extends ComponentController{
     this.todoCollection = null;
     this.selectedIds = [];
 
-    this.onLoadTasks = this.onLoadTasks.bind(this);
     this.onAddClick = this.onAddClick.bind(this);
   }
 
@@ -91,7 +90,13 @@ class MainLayoutController extends ComponentController{
       },
     });
 
-    let resource = workspace.todoService.query({userId:'1'}, addDelay(this, this.onLoadTasks, 1000));
+    function load(res, cb, statusCode, statusText){
+      if ( statusCode == 200 ){
+        this.onLoadTasks(res)
+      }
+    }
+
+    let resource = workspace.todoService.query({userId:'1'}, delayFn(load, this, 3000));
   }
 
   onLoadTasks(tasks){
