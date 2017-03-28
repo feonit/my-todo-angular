@@ -2,20 +2,21 @@
 
 <nav aria-label="Page navigation">
   <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
+    <!--<li class="disabled">-->
+      <!--<a class="" href="#" aria-label="Previous">-->
+        <!--<span aria-hidden="true">&laquo;</span>-->
+      <!--</a>-->
+    <!--</li>-->
 
+    <!-- ul > li ng-repeat?) малютка angular 1.6 -->
     <li ng-repeat="index in $ctrl.list">
-      <a ui-sref="task({ taskId: index })" ui-sref-active="active">{{ index }}</a>
+      <a ng-class="{active: $ctrl.currentPageNumber === index }" ui-sref="todoApp.page({ page: index })" ui-sref-active="active">{{ index }}</a>
     </li>
 
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
+    <!--<li class="disabled">-->
+      <!--<a class="" href="#" aria-label="Next">-->
+        <!--<span aria-hidden="true">&raquo;</span>-->
+      <!--</a>-->
+    <!--</li>-->
   </ul>
 </nav>

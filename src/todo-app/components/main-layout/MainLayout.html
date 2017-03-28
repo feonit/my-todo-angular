@@ -1,63 +1,65 @@
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="page-header">
-          <h1>Todo <small>Application</small></h1>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="form-group">
-              <div class="col-md-8 vcenter">
-                <h3>Загрузить задачи</h3>
-              </div><!-- yes, this is hack
+<div class="page-header">
+  <h1>Todo <small>Application</small></h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-md-8 vcenter">
+        <h3>Загрузить задачи</h3>
+      </div><!-- yes, this is hack
               --><div class="col-md-4 text-right vcenter">
-              <custom-button
-                ng-click="$ctrl.onLoadClick()"
-                options="$ctrl.optionsLoadButton"
-              ></custom-button>
-            </div>
+      <custom-button
+        ng-click="$ctrl.onLoadClick()"
+        options="$ctrl.optionsLoadButton"
+      ></custom-button>
+    </div>
 
-            </div>
-            <div class="form-group">
-              <todo-list
-                options="$ctrl.optionsTodoList"
-                on-selected-list-change="$ctrl.handleSelectedListChange(list)"
-              ></todo-list>
-            </div>
-          </div>
-          <div ng-if="$ctrl.badgeCanShowed()">
-            <div class="panel-footer">
-              <div class="row">
-                <div class="col-md-8 vcenter">
-                  Выбрано: <span class="badge">{{ $ctrl.getSelectedCount() }}</span>
-                </div><!-- yes, this is hack
+    </div>
+    <div class="form-group">
+
+
+      <!--<todo-list-->
+      <!--options="$ctrl.optionsTodoList"-->
+      <!--on-selected-list-change="$ctrl.handleSelectedListChange(list)"-->
+      <!--&gt;</todo-list>-->
+
+      <ui-view>
+        ...Loading
+      </ui-view>
+
+
+      <p class="text-center">
+        <pagination
+          total-count="$ctrl.getTotalCount()"
+          current-page-number="$ctrl.currentPageNumber"
+          part-count="$ctrl.partCount"
+        ></pagination>
+      </p>
+
+    </div>
+  </div>
+  <div ng-if="$ctrl.badgeCanShowed()">
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-8 vcenter">
+          Выбрано: <span class="badge">{{ $ctrl.getSelectedCount() }}</span>
+        </div><!-- yes, this is hack
                 --><div class="col-md-4 text-right vcenter">
-                  <custom-button
-                    title="Удалить выбранное"
-                    ng-click="$ctrl.onDeleteClick()"
-                    options="$ctrl.optionsDeleteButton"
-                  ></custom-button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <custom-button
+          title="Удалить выбранное"
+          ng-click="$ctrl.onDeleteClick()"
+          options="$ctrl.optionsDeleteButton"
+        ></custom-button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-        <ui-view></ui-view>
-
-        <p class="text-center">
-          <pagination
-            total-count="$ctrl.getTotalCount()"
-            part-count="3"
-          ></pagination>
-        </p>
-
-
-        <div class="panel-footer">
-          <form>
-            <div class="form-group">
+<div class="panel-footer">
+  <form>
+    <div class="form-group">
             <textarea
               ng-disabled="$ctrl.optionsTextArea.disabled"
               placeholder="{{ $ctrl.optionsTextArea.placeholder }}"
@@ -65,17 +67,12 @@
               class="form-control"
               rows="3"
             ></textarea>
-            </div>
-            <div class="form-group">
-              <custom-button
-                ng-click="$ctrl.onAddClick()"
-                options="$ctrl.optionsAddButton"
-              ></custom-button>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
+    <div class="form-group">
+      <custom-button
+        ng-click="$ctrl.onAddClick()"
+        options="$ctrl.optionsAddButton"
+      ></custom-button>
+    </div>
+  </form>
 </div>
-

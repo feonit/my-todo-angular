@@ -17,3 +17,17 @@ body {
   vertical-align: middle;
   float: none;
 }
+
+// angular в ng-repeat не дает установить класс active на тег <li>, поэтому добавляю класс и стиль на тег <а>
+.pagination a.active,
+.pagination a.active:focus,
+.pagination a.active:hover,
+.pagination span.active,
+.pagination span.active:focus,
+.pagination span.active:hover {
+  z-index: 3;
+  color: #fff;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}

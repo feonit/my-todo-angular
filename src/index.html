@@ -45,15 +45,26 @@
 
 
       require(['./todo-app/app.module', './todo-app/workspace.module'], function(app, workspace){
-        app.registerComponents();
         angular.element(function() {
+          // компонентам и роутам нужны сервисы
+          app.registerServices();
 
+          // bootstrap'у нужны знания о компонентах (но во время их работы им нужны сервисы, поэтому создаю область workspace в которой обещаю наличие необходимых)
+          app.registerComponents();
+
+          // роутерам нужны знания о сервисах и компонентах, они должны быть установлены до инициализации
+          app.registerRoutes();
+
+          // инициализация приложения
           var injector = angular.bootstrap(document.body, ['todoAppModule']);
+
+          // сервисам нужен bootstrap
           workspace.workspace.injector = injector;
           workspace.workspace.$resource = injector.get('$resource');
           workspace.workspace.todoService = injector.get('TodoService');
           workspace.workspace.todoItemService = injector.get('TodoItemService');
           workspace.workspace.$q = injector.get('$q');
+
 
         });
       })
@@ -176,7 +187,21 @@
   </script>
 
   <body>
-    <todo-app></todo-app>
+
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <ui-view>
+          </ui-view>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <!--<todo-app></todo-app>-->
 
     <!--<div ng-app="indexModule">-->
 

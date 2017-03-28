@@ -10,6 +10,7 @@ class PaginationController extends ComponentController{
     // todo заменить ng-repeat
     let totalCount = values.totalCount && values.totalCount.currentValue;
     let partCount = values.partCount && values.partCount.currentValue;
+    let currentPageNumber = values.currentPageNumber && values.currentPageNumber.currentValue;
 
     if (totalCount){
       this.totalCount = totalCount;
@@ -17,6 +18,10 @@ class PaginationController extends ComponentController{
 
     if (partCount){
       this.partCount = partCount;
+    }
+
+    if (currentPageNumber){
+      this.currentPageNumber = currentPageNumber;
     }
 
     this._updateView();
@@ -47,7 +52,8 @@ export default new class Pagination extends Component{
       controller: PaginationController,
       bindings: {
         totalCount: '<',
-        partCount: '<'
+        partCount: '<',
+        currentPageNumber: '<'
       }
     })
   }

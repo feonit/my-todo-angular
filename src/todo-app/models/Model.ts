@@ -1,9 +1,10 @@
 let counter = 0;
 
 export class Model {
-  public id: number;
+  /** Внутренний каунтер подсчета экземпляров */
+  public _id: number;
 
   constructor(options: any){
-    this.id = counter++;
+    this._id = counter++;
   }
 }

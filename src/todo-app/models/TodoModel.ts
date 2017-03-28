@@ -1,11 +1,15 @@
 import { Model } from './Model'
 
 export interface ITodoModel {
+  id: number;
   description: string;
   isCompleted: boolean;
 }
 
 export class TodoModel extends Model{
+  /** Идентификатор */
+  public id: number;
+
   /** Описание задачи */
   public description: string;
 
@@ -14,6 +18,7 @@ export class TodoModel extends Model{
 
   constructor(options: ITodoModel){
     super(options);
+    this.id = options.id;
     this.description = options.description;
     this.isCompleted = options.isCompleted;
   }

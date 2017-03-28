@@ -23,11 +23,13 @@ class MainLayoutController extends ComponentController{
 
   todoCollection: TodoCollection;
   selectedIds: number[];
+  currentPageNumber: number;
 
   static $inject = ['$scope']
 
   constructor($scope){
     super();
+    this.ITEMS_TODO_COUNT_PER_PAGE = null;
     this.$scope = $scope;
     this.optionsLoadButton = null;
     this.optionsAddButton = null;
@@ -35,6 +37,7 @@ class MainLayoutController extends ComponentController{
     this.optionsTextArea = null;
     this.optionsTodoList = null;
     this.optionsPaginator = null;
+    this.currentPageNumber = null;
 
     this.todoCollection = null;
     this.selectedIds = [];
@@ -63,6 +66,13 @@ class MainLayoutController extends ComponentController{
         disabled: true
       },
     });
+  }
+
+  $onChanges(values){
+    if ( values.collection && values.collection.currentValue ){
+      let tasks = values.collection.currentValue;
+      this.todoCollection = TodoCollection.createTodoCollection(tasks);
+    }
   }
 
   _subscribeToTextAreaChange (){
@@ -125,6 +135,7 @@ class MainLayoutController extends ComponentController{
     });
     this.forceRender()
   }
+
   onAddClick(){
     let text = this.optionsTextArea.text;
     text = text.trim();
@@ -199,6 +210,10 @@ class MainLayoutController extends ComponentController{
     }
   }
 
+  getCurrentPageNumber(){
+    return this.currentPageNumber;
+  }
+
   badgeCanShowed(){
     return this.getSelectedCount() > 0
   }
@@ -234,7 +249,12 @@ export default new class AppComponent extends Component{
   constructor(){
     super({
       templateUrl: 'todo-app/components/main-layout/MainLayout.html',
-      controller: MainLayoutController
+      controller: MainLayoutController,
+      bindings: {
+        collection: '<',
+        currentPageNumber: '<',
+        partCount: '<'
+      }
     })
   }
 }

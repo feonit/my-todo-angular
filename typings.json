@@ -1,9 +1,0 @@
-{
-  "globalDependencies": {
-  "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular.d.ts#dc9dabe74a5be62613b17a36053097",
-      "angular-resource": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular-resource.d.ts#00c03deeddaf7fe15272e87f2c13456eb01f2f15",
-      "angular-ui-router": "github:DefinitelyTyped/DefinitelyTyped/angular-ui-router/angular-ui-router.d.ts#41f31600a1bff1adef3c76642183b20ec97aa81e",
-      "es6-promise": "github:DefinitelyTyped/DefinitelyTyped/es6-promise/es6-promise.d.ts#71c9d2336c0c802f89d530e07563e00b9ac07792",
-      "underscore": "github:DefinitelyTyped/DefinitelyTyped/underscore/underscore.d.ts#0d21cc33ca2817d53d06f2ec792579a06ab0a848",
-  }
-}
