@@ -1,16 +1,26 @@
 <ol class="list-group noselect ">
   <li ng-repeat="(index, todo) in $ctrl.collection.models" class="list-group-item text-capitalize">
-    <div class="checkbox">
-      <label>
-        <input
-          ng-click="$ctrl.onCheckboxClick(todo.id)"
-          ng-checked="$ctrl.checkboxIsChecked(todo.id)"
-          type="checkbox"
-        />
-        <span>{{todo.id}})</span>
-        <del ng-if=todo.isCompleted>{{ todo.description }}</del>
-        <strong ng-if=!todo.isCompleted>{{ todo.description }}</strong>
-      </label>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <div class="checkbox">
+          <label>
+            <input
+              ng-click="$ctrl.onCheckboxClick(todo.id)"
+              ng-checked="$ctrl.checkboxIsChecked(todo.id)"
+              type="checkbox"
+            />
+            <span>{{todo.id}})</span>
+            <del ng-if=todo.isCompleted>{{ todo.description }}</del>
+            <strong ng-if=!todo.isCompleted>{{ todo.description }}</strong>
+          </label>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-4 text-right">
+        <div class="btn-group" role="group" aria-label="...">
+          <button title="Редактировать" type="button" class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
+          <button title="Удалить" type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+        </div>
+      </div>
     </div>
   </li>
 </ol>
