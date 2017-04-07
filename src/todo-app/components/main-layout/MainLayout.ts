@@ -1,28 +1,21 @@
+/**
+ * Отвечает за загрузку данных с сервера и последующие сохранение на сервер при изменениях
+ * */
+
 import { Component } from '../../models/Component';
 import { ComponentController } from '../../models/ComponentController';
 import { ICustomButton } from '../custom-button/CustomButton';
 import { workspace } from '../../workspace.module'
-import { TodoCollection } from '../../models/TodoCollection'
-import { ITodoListOptions } from "../todo-list/TodoList";
 
 import { delayFn } from '../../utils/helpers'
 
 
-interface ITextAreaOptions {
-  text: string,
-  placeholder: string,
-  disabled: boolean
-}
 
 class MainLayoutController extends ComponentController{
   optionsLoadButton: ICustomButton;
-  optionsAddButton: ICustomButton;
-  optionsDeleteButton: ICustomButton;
-  optionsTextArea: ITextAreaOptions;
-  optionsTodoList: ITodoListOptions;
 
-  todoCollection: TodoCollection;
-  selectedIds: number[];
+
+
   currentPageNumber: number;
 
   static $inject = ['$scope']
@@ -32,21 +25,12 @@ class MainLayoutController extends ComponentController{
     this.ITEMS_TODO_COUNT_PER_PAGE = null;
     this.$scope = $scope;
     this.optionsLoadButton = null;
-    this.optionsAddButton = null;
-    this.optionsDeleteButton = null;
-    this.optionsTextArea = null;
-    this.optionsTodoList = null;
-    this.optionsPaginator = null;
+
     this.currentPageNumber = null;
 
-    this.todoCollection = null;
-    this.selectedIds = [];
-
-    this.onAddClick = this.onAddClick.bind(this);
   }
 
   $onInit(){
-    this._subscribeToTextAreaChange();
     // this._loadTasks(); // auto-loader
 
     // isInitialDataState
@@ -55,16 +39,7 @@ class MainLayoutController extends ComponentController{
         title: "Загрузить",
         class: 'btn-success',
         disabled: false
-      },
-      optionsTextArea: {
-        text: "",
-        placeholder: "",
-        disabled: true
-      },
-      optionsAddButton: {
-        title: 'Добавить',
-        disabled: true
-      },
+      }
     });
   }
 
@@ -75,19 +50,7 @@ class MainLayoutController extends ComponentController{
     }
   }
 
-  _subscribeToTextAreaChange (){
-    let self = this;
-    this.$scope.$watch('$ctrl.optionsTextArea.text', function(newValue, oldValue) {
 
-      // isReadyForAddNewTaskDataState
-      self.setState({
-        optionsAddButton: {
-          class: newValue.trim() ? 'btn-success' : 'btn-default',
-          disabled: !newValue.trim()
-        },
-      })
-    });
-  }
 
   _loadTasks(){
 
@@ -119,46 +82,13 @@ class MainLayoutController extends ComponentController{
         class: 'btn-info',
         disabled: true
       },
-      optionsTodoList: {
-        collection: this.todoCollection.models,
-        selectedIds: this.selectedIds
-      },
-      optionsTextArea: {
-        text: "",
-        placeholder: "Введите новую задачку",
-        disabled: false
-      },
-      optionsDeleteButton: {
-        title: "Удалить",
-        disabled: true
-      }
+
+
     });
     this.forceRender()
   }
 
-  onAddClick(){
-    let text = this.optionsTextArea.text;
-    text = text.trim();
-    if ( text ){
-      this.todoCollection.addNewTodo({ description: text });
 
-      this.setState({
-        optionsTodoList: {
-          collection: this.todoCollection.models
-        },
-        optionsTextArea: {
-          text: "",
-          placeholder: "Введите еще новую задачку"
-        }
-      })
-    } else {
-      this.setState({
-        optionsTextArea: {
-          placeholder: "Пожалуйста, введите новую задачу"
-        }
-      })
-    }
-  }
 
   onDeleteClick(){
     if ( this.selectedIds.length ){
@@ -198,38 +128,6 @@ class MainLayoutController extends ComponentController{
     this._loadTasks()
   }
 
-  getSelectedCount(){
-    return this.selectedIds.length
-  }
-
-  getTotalCount(){
-    if (this.todoCollection){
-      return this.todoCollection.models.length
-    } else {
-      return 0;
-    }
-  }
-
-  getCurrentPageNumber(){
-    return this.currentPageNumber;
-  }
-
-  badgeCanShowed(){
-    return this.getSelectedCount() > 0
-  }
-
-  handleSelectedListChange(ids){
-    this.selectedIds = ids;
-
-     this.setState({
-       optionsDeleteButton: {
-         title: "Удалить",
-         disabled: !ids.length,
-         class: ids.length ? 'btn-success' : 'btn-default'
-       }
-     })
-
-  }
 
   errorsView(textError){
     alert(textError)

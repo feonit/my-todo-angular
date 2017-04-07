@@ -12,9 +12,15 @@ class CustomButtonController {
   disabled: boolean;
 
   $onChanges(props){
-    this.title = props.title.currentValue;
-    this.class = props.class.currentValue;
-    this.disabled = props.disabled.currentValue;
+    if (props.title){
+      this.title = props.title.currentValue;
+    }
+    if (props.class){
+      this.class = props.class.currentValue;
+    }
+    if ( props.disabled){
+      this.disabled = props.disabled.currentValue;
+    }
   }
 }
 

@@ -3,69 +3,13 @@
 </div>
 
 <div class="panel panel-default">
+
   <div class="panel-body">
-    <div class="form-group inside-textarea-container">
-      <textarea
-        ng-disabled="$ctrl.optionsTextArea.disabled"
-        placeholder="{{ $ctrl.optionsTextArea.placeholder }}"
-        ng-model="$ctrl.optionsTextArea.text"
-        class="form-control"
-        rows="3"
-      ></textarea>
-      <custom-button
-        ng-click="$ctrl.onAddClick()"
-        class="$ctrl.optionsAddButton.class + ' btn-inside-textarea'"
-        title="$ctrl.optionsAddButton.title"
-        disabled="$ctrl.optionsAddButton.disabled"
-      ></custom-button>
-    </div>
-  </div>
+
     <div class="form-group">
-
-      <!--<todo-list-->
-      <!--options="$ctrl.optionsTodoList"-->
-      <!--on-selected-list-change="$ctrl.handleSelectedListChange(list)"-->
-      <!--&gt;</todo-list>-->
-
-      <ui-view>
-        ...Loading
-      </ui-view>
-
-
-      <p class="text-center">
-        <pagination
-          total-count="$ctrl.getTotalCount()"
-          current-page-number="$ctrl.currentPageNumber"
-          part-count="$ctrl.partCount"
-        ></pagination>
-      </p>
-
-    </div>
-  </div>
-  <div ng-if="$ctrl.badgeCanShowed()">
-    <div class="panel-footer">
-      <div class="row">
-        <div class="col-md-8 vcenter">
-          Выбрано: <span class="badge">{{ $ctrl.getSelectedCount() }}</span>
-        </div><!-- yes, this is hack
-      --><div class="col-md-4 text-right vcenter">
-        <custom-button
-          ng-click="$ctrl.onDeleteClick()"
-          class="$ctrl.optionsDeleteButton.class"
-          title="$ctrl.optionsDeleteButton.title"
-          disabled="$ctrl.optionsDeleteButton.disabled"
-        ></custom-button>
-      </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="panel-footer">
-  <div class="form-group">
-    <div class="col-md-8 vcenter">
-      <h3>Загрузить задачи</h3>
-    </div><!-- yes, this is hack
+      <div class="col-md-8 vcenter">
+        <h3>Загрузить задачи</h3>
+      </div><!-- yes, this is hack
  --><div class="col-md-4 text-right vcenter">
       <custom-button
         ng-click="$ctrl.onLoadClick()"
@@ -74,5 +18,15 @@
         disabled="$ctrl.optionsLoadButton.disabled"
       ></custom-button>
     </div>
+    </div>
+
   </div>
+
 </div>
+
+<!--<todo-list-->
+<!--options="$ctrl.optionsTodoList"-->
+<!--on-selected-list-change="$ctrl.handleSelectedListChange(list)"-->
+<!--&gt;</todo-list>-->
+
+<todo-layout></todo-layout>

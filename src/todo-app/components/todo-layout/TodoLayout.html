@@ -1,0 +1,59 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <ui-view collection="[]">
+      Has not data
+    </ui-view>
+  </div>
+
+  <div class="panel-body">
+    <div class="form-group inside-textarea-container">
+    <textarea
+      ng-disabled="$ctrl.optionsTextArea.disabled"
+      placeholder="{{ $ctrl.optionsTextArea.placeholder }}"
+      ng-model="$ctrl.optionsTextArea.text"
+      class="form-control"
+      rows="3"
+    ></textarea>
+      <custom-button
+        ng-click="$ctrl.onAddClick()"
+        class="$ctrl.optionsAddButton.class + ' btn-inside-textarea'"
+        title="$ctrl.optionsAddButton.title"
+        disabled="$ctrl.optionsAddButton.disabled"
+      ></custom-button>
+    </div>
+  </div>
+
+
+  <div class="panel-footer">
+    <p class="text-center">
+      <pagination
+        total-count="$ctrl.getTotalCount()"
+        current-page-number="$ctrl.currentPageNumber"
+        part-count="$ctrl.partCount"
+      ></pagination>
+    </p>
+  </div>
+
+</div>
+
+
+
+
+<!--<div ng-if="$ctrl.badgeCanShowed()">-->
+  <!--<div class="panel-footer">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-8 vcenter">-->
+        <!--Выбрано: <span class="badge">{{ $ctrl.getSelectedCount() }}</span>-->
+      <!--</div>&lt;!&ndash; yes, this is hack-->
+      <!--&ndash;&gt;<div class="col-md-4 text-right vcenter">-->
+      <!--<custom-button-->
+        <!--ng-click="$ctrl.onDeleteClick()"-->
+        <!--class="$ctrl.optionsDeleteButton.class"-->
+        <!--title="$ctrl.optionsDeleteButton.title"-->
+        <!--disabled="$ctrl.optionsDeleteButton.disabled"-->
+      <!--&gt;</custom-button>-->
+    <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

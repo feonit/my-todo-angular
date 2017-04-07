@@ -1,0 +1,83 @@
+<div class="jumbotron">
+  <style>
+    code {
+      white-space: pre-wrap;
+    }
+  </style>
+  <div class="container">
+
+    <!-- список -->
+    <div class="row separator-box">
+      <div class="col-md-6 col-md-offset-3">
+        <h3>UI &lt;TodoList/&gt;</h3>
+        <h5>It can rewrite task, remove, set as completed</h5>
+<code>TodoListInterface {
+  collection: Array&lt;Todo&gt;,
+  onSelectedListChange: &lt;fn&gt;
+}</code><br/>
+        <todo-list
+          on-selected-list-change="alert(changes)"
+          options='{ collection: [
+              {"id": 1,"isCompleted": true, "description": "Backbone.js"},
+              {"id": 2,"isCompleted": true, "description": "Marionette.js"},
+              {"id": 12,"isCompleted": false, "description": "Meteor"}
+            ]}'
+        ></todo-list>
+      </div>
+    </div>
+
+    <!-- навигация -->
+    <div class="row separator-box">
+      <div class="col-md-6 col-md-offset-3">
+        <h3>UI &lt;Pagination/&gt;</h3>
+        <h5>It presents a complex of links</h5>
+<code>PaginationInterface {
+  totalCount: &lt;number&gt;,
+  partCount: &lt;number&gt;,
+  currentPageNumber: &lt;number&gt;
+}</code><br/>
+        <pagination
+          total-count="10"
+          part-count="4"
+          current-page-number="1"
+        ></pagination>
+      </div>
+    </div>
+
+    <!-- кнопка -->
+    <div class="row separator-box">
+      <div class="col-md-6 col-md-offset-3">
+        <h3>UI &lt;CustomButton/&gt;</h3>
+        <h5>It presents a wrapper for button tag with additional params</h5>
+<code>CustomButtonInterface {
+  class: &lt;string&gt;,
+  disabled: &lt;boolean&gt;,
+  title: &lt;string&gt;
+}</code><br/>
+        <custom-button
+          class="'btn btn-success'"
+          disabled="true"
+          title="'Click me'"
+        ></custom-button>
+      </div>
+    </div>
+
+    <!-- комплекс компонентов -->
+    <div class="row separator-box">
+      <div class="col-md-6 col-md-offset-3">
+        <h3>UI &lt;TodoLayout/&gt;</h3>
+        <h5>It presents complex of component together</h5>
+<code>CustomButtonInterface {
+  collection: &lt;string&gt;,
+}</code><br/>
+        <todo-layout collection='[
+              {"id": 1,"isCompleted": true, "description": "Backbone.js"},
+              {"id": 2,"isCompleted": true, "description": "Marionette.js"},
+              {"id": 12,"isCompleted": false, "description": "Meteor"}
+            ]'
+        ></todo-layout>
+      </div>
+    </div>
+
+  </div>
+</div>

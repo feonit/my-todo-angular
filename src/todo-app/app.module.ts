@@ -4,6 +4,7 @@ import CustomButton from './components/custom-button/CustomButton.js';
 import TodoList from './components/todo-list/TodoList.js';
 import TaskEdit from './components/task-edit/TaskEdit';
 import Pagination from './components/pagination/Pagination';
+import TodoLayout from './components/todo-layout/TodoLayout';
 
 import { routerConfig } from './router';
 
@@ -28,6 +29,8 @@ export function registerServices(){
 
 export function registerComponents(){
   module
+    //todo костыль над lowercase
+    .component('todoLayout', TodoLayout)
     .component('todoApp', MainLayout)
     .component('customButton', CustomButton)
     .component('todoList', TodoList)

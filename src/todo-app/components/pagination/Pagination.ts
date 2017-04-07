@@ -2,8 +2,16 @@ import { Component } from '../../models/Component';
 import { ComponentController } from '../../models/ComponentController';
 
 class PaginationController extends ComponentController{
+  public list: number[];
+  public totalCount: number;
+  public partCount: number;
+  public currentPageNumber: number;
   constructor(){
     super();
+    this.list = [];
+    this.totalCount = 0;
+    this.partCount = 0;
+    this.currentPageNumber = 0;
   }
 
   $onChanges(values){
@@ -24,7 +32,9 @@ class PaginationController extends ComponentController{
       this.currentPageNumber = currentPageNumber;
     }
 
-    this._updateView();
+    if (this.totalCount || this.partCount || this.currentPageNumber){
+      this._updateView();
+    }
   }
 
   _updateView(){
@@ -42,7 +52,9 @@ class PaginationController extends ComponentController{
 }
 
 export interface IPagination{
-
+  totalCount: number,
+  partCount: number,
+  currentPageNumber: number
 }
 
 export default new class Pagination extends Component{

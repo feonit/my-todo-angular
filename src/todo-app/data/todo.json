@@ -5,7 +5,7 @@
   {"id": 4,"isCompleted": true, "description": "React.js"},
   {"id": 5,"isCompleted": false, "description": "Angular"},
   {"id": 6,"isCompleted": true, "description": "Redux"},
-  {"id": 7,"isCompleted": false, "description": "Bootstrap"},
+  {"id": 7,"isCompleted": true, "description": "Bootstrap"},
   {"id": 8,"isCompleted": true, "description": "Dojo Toolkit"},
   {"id": 9,"isCompleted": true, "description": "Ext JS"},
   {"id": 10,"isCompleted": true, "description": "Node.js"},

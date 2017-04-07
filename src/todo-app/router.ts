@@ -23,8 +23,17 @@ export const routerConfig = ["$stateProvider", "$urlRouterProvider", "$locationP
   let router = new Router($stateProvider);
 
   router
-    .route("/", IndexState)
-    .route("/todo", TodoState)
-    .route("/todo?page", PageState)
-    .route("/todo/{taskId:int}", TaskState)
+    .route("/", {
+      name: "todoState",
+      component: "todoList",
+      resolve: {
+        options: ["$rootScope", "$stateParams", function($rootScope, $stateParams){
+          return $rootScope.optionsTodoList;
+        }]
+      },
+    })
+    // .route("/", IndexState)
+    // .route("/todo", TodoState)
+    // .route("/todo?page", PageState)
+    // .route("/todo/{taskId:int}", TaskState)
 }]

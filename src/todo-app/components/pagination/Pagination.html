@@ -10,7 +10,7 @@
 
     <!-- ul > li ng-repeat?) малютка angular 1.6 -->
     <li ng-repeat="index in $ctrl.list">
-      <a ng-class="{active: $ctrl.currentPageNumber === index }" ui-sref="todoApp.page({ page: index })" ui-sref-active="active">{{ index }}</a>
+      <a ng-class="{active: $ctrl.currentPageNumber == index + 1 }" ui-sref="todoApp.page({ page: index })" ui-sref-active="active">{{ index }}</a>
     </li>
 
     <!--<li class="disabled">-->

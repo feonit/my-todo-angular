@@ -18,7 +18,7 @@ export class TodoModel extends Model{
 
   constructor(options: ITodoModel){
     super(options);
-    this.id = options.id;
+    this.id = "undefined" == typeof options.id ? this._id : options.id;
     this.description = options.description;
     this.isCompleted = options.isCompleted;
   }
